@@ -94,6 +94,8 @@ class AnalyzeData(object):
                         shoreProfile += "H"
                     if shorePoint.elevation < ptElevation:
                         shoreProfile += "L"
+                    if shorePoint.elevation < ptElevation:
+                        shoreProfile += "M"
                 reducedNeighborProfile = compressRepetetiveChars(shoreProfile)
 
                 # Does it reduce to all points lower? Must be a summit!
@@ -107,7 +109,7 @@ class AnalyzeData(object):
                                   edge=self.edge,
                                   multiPoint=self.blob)
 
-                if any(x in reducedNeighborProfile for x in saddleProfile):
+                if any(x in reducedNeighborProfile.strip('M') for x in saddleProfile):
                     for exemptPoint in self.blob.points:
                         self.skipSummitAnalysis[exemptPoint.x] \
                             .append(exemptPoint.y)
