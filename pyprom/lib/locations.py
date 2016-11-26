@@ -83,6 +83,7 @@ class Summit(SpotElevation):
         super(Summit, self).__init__(latitude, longitude,
                                      elevation, *args, **kwargs)
         self.multiPoint = kwargs.get('multiPoint', None)
+        self.equalNeighbors = kwargs.get('equalNeighbors', None)
 
     def __repr__(self):
         return "<Summit> lat {} long {} El {} MultiPoint {}".format(
